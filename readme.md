@@ -1,5 +1,5 @@
 Summer project. Testing out what i've learned in python as a novice.\
-Uses openai compatibleeurl as the api\
+Uses openai compatible url as the api\
 Install requirements:\
 \
 ``
