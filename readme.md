@@ -13,6 +13,7 @@ More configuration ⛔\
 More interactions (Random Dms) ❌\
 Speech to text (Faster Whisper)❌\
 Text to speech (Alltalk/kokoro) ❌\
+Full VC capabilities ❌\
 Some sort of avatar facecam (Vtube studio etc.) ❌
 
 
