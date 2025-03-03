@@ -1,8 +1,10 @@
 Summer project. Testing out what i've learned in python.\
 Install requirements\
+\
 ``
 pip install -r requirements.txt
 ``
+\
 \
 Goal:\
 Basic interaction (text) ✅\
