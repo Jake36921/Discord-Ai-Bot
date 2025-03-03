@@ -1,4 +1,4 @@
-Summer project. Testing out what i've learned in python.\
+Summer project. Testing out what i've learned in python as a novice.\
 Install requirements\
 \
 ``
