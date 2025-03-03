@@ -1,3 +1,4 @@
 discord
 pycord
+openai
 requests
