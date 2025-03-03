@@ -1,0 +1,7 @@
+openai_url: "" # Url i.e. http://192.168.2.3:1234/v1/chat/completions  must add "/chat/completions"
+discord_token: "" # Discord Bot Token
+temperature: 0.7  # Default temperature
+context_size: 8192  # Context size - adjust based on your api
+output_size: 512   # max output tokens - adjust based on your api
+conversation_timeout: 60 # How long the bot will actively wait for your reply in seconds
+backread_message_count: 10 # Amount of messages for the bot to backread
