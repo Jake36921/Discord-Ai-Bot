@@ -35,9 +35,11 @@ except ValueError as e:
 # system prompt, Might move it to config.yaml for easier modification
 system_prompt = prompt
 # Debugging purposes
-print("Url:", openai_url, "Discord Token:", discord_token, "Temperature:", temperature, "Context_Size:", context_size, "Output Size:", output_size, "Conversation Timeout:", conversation_timeout, "Backread amount:", backread_message_count)
-    except Exception as e:
-        print("An error occurred:", e)
+try:
+    print("Url:", openai_url, "Discord Token:", discord_token, "Temperature:", temperature, "Context_Size:", context_size, "Output Size:", output_size, "Conversation Timeout:", conversation_timeout, "Backread amount:", backread_message_count)
+except Exception as e:
+    print("An error occurred:", e)
+
 
 intents = discord.Intents.default()
 intents.message_content = True
