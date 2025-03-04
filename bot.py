@@ -15,7 +15,12 @@ try:
         output_size = keys.get("output_size", 512)
         conversation_timeout = keys.get("conversation_timeout", 60)  # Default 60 seconds (1 minute)
         backread_message_count = keys.get("backread_message_count", 3) # Default backread 3 messages
+        prompt = keys.get("system_prompt", " ")
 
+# Debugging purposes
+print("Url:", openai_url, " Discord Token:", discord_token, " Temperature:", temperature, " Context_Size:" context_size, " Output Size:", output_size, " Convesation Timeout:", conversation_timeout, " Backread amount:" backread_message_count)
+
+    
     if not openai_url or not discord_token:
         raise ValueError("Missing 'openai_url' or 'discord_token' in config.yaml")
 except FileNotFoundError:
@@ -29,14 +34,7 @@ except ValueError as e:
     exit()
 
 # system prompt, Might move it to config.yaml for easier modification
-system_prompt = """
-You are a helpful and friendly Discord bot that remembers past messages in the conversation and also considers recent messages in the channel for broader context.
-Your goal is to assist users with their questions and provide informative and engaging responses within a single conversation, taking into account both the ongoing conversation history and recent channel context.
-Keep your answers concise and to the point, unless the user asks for a more detailed explanation.
-Be polite and respectful in all your interactions.
-Remember the conversation history and maintain context within the current conversation.
-You also have access to a few recent messages from the channel to understand the current discussion. Use this broader context to provide more relevant and helpful responses.
-"""
+system_prompt = prompt
 
 
 intents = discord.Intents.default()
@@ -74,7 +72,7 @@ async def ask_openai(user_id, prompt, backread_context=""):
         "messages": current_history, 
         "temperature": temperature,
         "max_tokens": output_size,
-        # "context_window": context_size, #  Remove '#' if your api supports context window for chat completions
+        # "context_window": context_size, #  Remove '#' if your API supports context window for chat completions
     }
 
     try:
@@ -87,7 +85,7 @@ async def ask_openai(user_id, prompt, backread_context=""):
                 ai_response_text = response_json['choices'][0]['message']['content']
                 conversation_history[user_id].append({"role": "assistant", "content": ai_response_text})
                 return ai_response_text
-            elif 'text' in response_json['choices'][0]: # For older openai api format
+            elif 'text' in response_json['choices'][0]: # For older openai API format
                 ai_response_text = response_json['choices'][0]['text']
                 conversation_history[user_id].append({"role": "assistant", "content": ai_response_text})
                 return ai_response_text
@@ -98,10 +96,10 @@ async def ask_openai(user_id, prompt, backread_context=""):
 
     except requests.exceptions.RequestException as e:
         print(f"Error communicating with OpenAI API: {e}")
-        return "Trouble connecting to the api right now."
+        return "Trouble connecting to the API right now."
     except json.JSONDecodeError:
         print("Error: OpenAI API response was not valid JSON.")
-        return "the api returned an unexpected response."
+        return "the API returned an unexpected response."
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
         return "An unexpected error occurred."
@@ -159,7 +157,7 @@ async def on_message(message):
             if openai_response:
                 await message.reply(openai_response)
             else:
-                await message.reply("Sorry, I couldn't get a response from the api.")
+                await message.reply("Sorry, I couldn't get a response from the API.")
         last_interaction_time[user_id] = current_time
     elif message.reference and message.reference.resolved and message.reference.resolved.author == client.user:
         user_prompt = message.content.strip()
@@ -187,7 +185,7 @@ async def on_message(message):
             if openai_response:
                 await message.reply(openai_response)
             else:
-                await message.reply("Sorry, I couldn't get a response from the api.")
+                await message.reply("Sorry, I couldn't get a response from the API.")
         last_interaction_time[user_id] = current_time 
     elif user_id in last_interaction_time and current_time - last_interaction_time[user_id] <= conversation_timeout and user_id in conversation_history and conversation_history[user_id]:
         user_prompt = message.content.strip()
@@ -214,7 +212,7 @@ async def on_message(message):
             if openai_response:
                 await message.reply(openai_response)
             else:
-                await message.reply("Sorry, I couldn't get a response from the api.")
+                await message.reply("Sorry, I couldn't get a response from the API.")
         last_interaction_time[user_id] = current_time
 
 
