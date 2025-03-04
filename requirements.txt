@@ -2,3 +2,4 @@ discord
 pycord
 openai
 requests
+pyyaml
