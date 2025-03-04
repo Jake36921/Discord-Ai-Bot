@@ -19,7 +19,8 @@ try:
 
 # Debugging purposes
 print("Url:", openai_url, "Discord Token:", discord_token, "Temperature:", temperature, "Context_Size:", context_size, "Output Size:", output_size, "Conversation Timeout:", conversation_timeout, "Backread amount:", backread_message_count)
-
+except Exception as e:
+    print("An error occurred:", e)
 
     
     if not openai_url or not discord_token:
