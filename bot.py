@@ -32,9 +32,9 @@ except ValueError as e:
     print(f"Error loading keys from config.yaml: {e}")
     exit()
 
-# system prompt, Might move it to config.yaml for easier modification
+
 system_prompt = prompt
-# Debugging purposes
+
 try:
     print("Url:", openai_url, "Discord Token:", discord_token, "Temperature:", temperature, "Context_Size:", context_size, "Output Size:", output_size, "Conversation Timeout:", conversation_timeout, "Backread amount:", backread_message_count)
 except Exception as e:
