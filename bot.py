@@ -36,7 +36,7 @@ except ValueError as e:
 system_prompt = prompt
 
 try:
-    print("Url:", openai_url, "Discord Token:", discord_token, "Temperature:", temperature, "Context_Size:", context_size, "Output Size:", output_size, "Conversation Timeout:", conversation_timeout, "Backread amount:", backread_message_count)
+    print(f"Url: {openai_url}, Discord Token: {discord_token}, Temperature: {temperature}, Context_Size: {context_size}, Output Size: {output_size}, Conversation Timeout: {conversation_timeout}, Backread amount: {backread_message_count}")
 except Exception as e:
     print("An error occurred:", e)
 
