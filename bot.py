@@ -3,10 +3,11 @@ import requests
 import yaml
 import json
 import time
+import re
 
 # Load stuff from config.yaml
 try:
-    with open("config.yaml", "r") as f:
+    with open("config.yaml", "r", encoding='utf-8') as f:
         keys = yaml.safe_load(f)
         openai_url = keys.get("openai_url")
         discord_token = keys.get("discord_token")
@@ -15,7 +16,10 @@ try:
         output_size = keys.get("output_size", 512)
         conversation_timeout = keys.get("conversation_timeout", 60)  # Default 60 seconds (1 minute)
         backread_message_count = keys.get("backread_message_count", 3) # Default backread 3 messages
-        prompt = keys.get("system_prompt", " ")
+        sysprompt = keys.get("system_prompt", " ")
+        emoji_prompt = keys.get("emoji_prompt", "")
+        example_dialogue = keys.get("example_dialogue", "")
+        persona = keys.get("persona", "")
 
 
 
@@ -33,7 +37,7 @@ except ValueError as e:
     exit()
 
 
-system_prompt = prompt
+system_prompt = persona + emoji_prompt #replace sysprompt with persona for something less dull {configure it in config.yaml}
 
 try:
     print(f"Url: {openai_url}, Discord Token: {discord_token}, Temperature: {temperature}, Context_Size: {context_size}, Output Size: {output_size}, Conversation Timeout: {conversation_timeout}, Backread amount: {backread_message_count}")
@@ -52,7 +56,12 @@ conversation_history = {}
 
 last_interaction_time = {}
 
-
+def get_string_between_reacts(text):
+    pattern = re.compile(r'!react(.*?)!react')
+    match = pattern.search(text)
+    if match:
+        return match.group(1).strip()
+    return None
 
 async def ask_openai(user_id, prompt, backread_context=""):
     headers = {
@@ -76,7 +85,7 @@ async def ask_openai(user_id, prompt, backread_context=""):
         "messages": current_history, 
         "temperature": temperature,
         "max_tokens": output_size,
-        # "context_window": context_size, #  Remove '#' if your API supports context window for chat completions
+        "context_window": context_size, #  Add '#' if your API doesnt supports context window for chat completions
     }
 
     try:
@@ -213,9 +222,23 @@ async def on_message(message):
 
         async with message.channel.typing():
             openai_response = await ask_openai(user_id, user_prompt, backread_messages_str)
+            emoji = get_string_between_reacts(openai_response)
+            print(openai_response)
+            print(system_prompt)
+            if "!react" in openai_response:
+                openai_response = openai_response.replace("!react", "")
+                print("has react")
+                print(emoji)
+                await message.add_reaction(emoji)
+                openai_response = openai_response.replace(emoji, "")
+            else:
+                print("no react")
             if openai_response:
                 await message.reply(openai_response)
-            else:
+            elif openai_response == emoji:
+                return None
+                #await message.reply("Sorry, I couldn't get a response from the API.")
+            elif openai_response == None:
                 await message.reply("Sorry, I couldn't get a response from the API.")
         last_interaction_time[user_id] = current_time
 
