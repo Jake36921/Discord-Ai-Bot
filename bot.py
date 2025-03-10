@@ -37,7 +37,7 @@ except ValueError as e:
     exit()
 
 
-system_prompt = persona + emoji_prompt #replace sysprompt with persona for something less dull {configure it in config.yaml}
+system_prompt = sysprompt + emoji_prompt #replace sysprompt with persona for something less dull {configure it in config.yaml}
 
 try:
     print(f"Url: {openai_url}, Discord Token: {discord_token}, Temperature: {temperature}, Context_Size: {context_size}, Output Size: {output_size}, Conversation Timeout: {conversation_timeout}, Backread amount: {backread_message_count}")
