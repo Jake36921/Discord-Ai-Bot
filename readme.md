@@ -1,6 +1,6 @@
 Summer project. Testing out what i've learned in python as a novice.\
 Uses openai compatible url as the api\
-I recommend using Nemomix-unleashed-12B for the ai\
+I recommend using Nemomix-unleashed-12B\
 Install requirements:\
 \
 ``
