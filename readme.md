@@ -1,5 +1,6 @@
 Summer project. Testing out what i've learned in python as a novice.\
 Uses openai compatible url as the api\
+I recommend using Nemomix-unleashed-12B for the ai\
 Install requirements:\
 \
 ``
@@ -10,7 +11,8 @@ pip install -r requirements.txt
 Goals:\
 Basic interaction (text) ✅\
 More configuration ⛔\
-More interactions (Random Dms) ❌\
+More interactions (Random Dms, reactions, etc) ⛔\
+Vision capabilities❌
 Speech to text (Faster Whisper)❌\
 Text to speech (Alltalk/kokoro) ❌\
 Full VC capabilities ❌\
