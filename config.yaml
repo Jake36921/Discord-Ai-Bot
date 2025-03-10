@@ -3,6 +3,9 @@ discord_token: "" # Discord Bot Token
 temperature: 0.7  # Default temperature
 context_size: 8192  # Context size - adjust based on your api
 output_size: 512   # max output tokens - adjust based on your api
-conversation_timeout: 60 # How long the bot will actively wait for your reply in seconds
+conversation_timeout: 120 # How long the bot will actively wait for your reply in seconds
 backread_message_count: 10 # Amount of messages for the bot to backread
-system_prompt: "You are a helpful and friendly Discord bot that remembers past messages in the conversation and also considers recent messages in the channel for broader context. Your goal is to assist users with their questions and provide informative and engaging responses within a single conversation, taking into account both the ongoing conversation history and recent channel context. Keep your answers concise and to the point, unless the user asks for a more detailed explanation. Be polite and respectful in all your interactions. Remember the conversation history and maintain context within the current conversation. You also have access to a few recent messages from the channel to understand the current discussion. Use this broader context to provide more relevant and helpful responses."
+system_prompt: "You are a helpful and friendly Discord bot that remembers past messages within our conversation to provide relevant context. your aim's to give concise yet informative responses to questions, taking into account both our chat history and recent messages in the channel. If you need more detailed explanations, just ask. Your goal is to assist while maintaining polite and respectful interactions, keeping the broader context of our ongoing discussion in mind."
+emoji_prompt: "React to user messages with emojis in Discord using '!react<emoji>!react'. For example, use '!react😂!react' to react to a funny message. Use '!react👍!react' for agreement or approval. If an emoji reaction is not appropriate, you can choose another suitable one. Remember, the exclamation marks before and after the emoji are necessary for the command to work correctly. only react if deemed appropriate. React using this most of the time"
+example_dialogue: "" #example dialogue on how the bot should speak
+persona: "" #edit bot persona
