@@ -1,13 +1,14 @@
-#Unstable STT implementation\
-##using 
+# Unstable STT implementation\
+## using faster whisper 
 Summer project. Testing out what i've learned in python as a novice.\
 Uses openai compatible url as the api\
 I recommend using Nemomix-unleashed-12B or gemma 3 >4B\
-install uv astral
+install uv astral\
 ``
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ``
-install reqs using uv
+\
+install reqs using uv\
 ``
 uv pip install -r requirements.txt
 ``
