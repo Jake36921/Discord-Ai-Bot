@@ -1,4 +1,4 @@
-# Unstable STT implementation\
+# Unstable STT implementation
 ## using faster whisper 
 Summer project. Testing out what i've learned in python as a novice.\
 Uses openai compatible url as the api\
