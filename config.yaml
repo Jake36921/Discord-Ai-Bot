@@ -10,3 +10,5 @@ emoji_prompt: "React to user messages with emojis in Discord using '!react<emoji
 example_dialogue: "" #example dialogue on how the bot should speak
 persona: "" #edit bot persona
 vision: False
+max_image_size: 2 * 1024 * 1024 # 2mb default max size
+max_image_dimension: 2048 # max px
