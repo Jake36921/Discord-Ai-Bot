@@ -9,3 +9,4 @@ system_prompt: "You are a helpful and friendly Discord bot that remembers past m
 emoji_prompt: "React to user messages with emojis in Discord using '!react<emoji>!react'. For example, use '!react😂!react' to react to a funny message. Use '!react👍!react' for agreement or approval. If an emoji reaction is not appropriate, you can choose another suitable one. Remember, the exclamation marks before and after the emoji are necessary for the command to work correctly. only react if deemed appropriate. React using this most of the time"
 example_dialogue: "" #example dialogue on how the bot should speak
 persona: "" #edit bot persona
+vision: False
