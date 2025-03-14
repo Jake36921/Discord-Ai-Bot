@@ -5,3 +5,4 @@ requests
 pyyaml
 aiohttp
 pillow
+faster-whisper
